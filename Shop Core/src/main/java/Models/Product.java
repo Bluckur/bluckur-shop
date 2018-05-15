@@ -16,14 +16,20 @@ public class Product {
     private String name;
     private String description;
     private int quantity;
+    private boolean available;
 
-    public Product(int id, int price, String imagePath, String name, String description, int quantity) {
+    public Product(int id, int price, String imagePath, String name, String description, int quantity, boolean available) {
+        this(price, imagePath, name, description, quantity, available);
         this.id = id;
+    }
+
+    public Product(int price, String imagePath, String name, String description, int quantity, boolean available) {
         this.price = price;
         this.imagePath = imagePath;
         this.name = name;
         this.description = description;
         this.quantity = quantity;
+        this.available = available;
     }
 
     public int getId() {
@@ -73,6 +79,13 @@ public class Product {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-    
-    
+
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
 }
