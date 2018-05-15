@@ -6,9 +6,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class CustomerRest {
-
-    @RequestMapping("/customer/greeting")
+public class PurchaseRest {
+    @RequestMapping("/purchase/greeting")
     public Customer customer(@RequestParam(value="name", defaultValue="World") String name) {
         return new Customer(name, "Rachelsmolen R1 Eindhoven\np.janissen@student.fontys.nl");
     }
