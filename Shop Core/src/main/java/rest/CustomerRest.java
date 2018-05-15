@@ -1,15 +1,18 @@
 package rest;
 
 import Models.Customer;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class CustomerRest {
 
-    @RequestMapping("/customer/greeting")
-    public Customer customer(@RequestParam(value="name", defaultValue="World") String name) {
-        return new Customer(name, "Rachelsmolen R1 Eindhoven\np.janissen@student.fontys.nl");
+    /**
+     * Gets the customer with this publicKeyHash.
+     * @param publicKeyHash the public key hash of the customer.
+     * @return the customer found, null if no customer was found.
+     */
+    @RequestMapping(method= RequestMethod.GET, value="/customer/get/{publicKeyHash}")
+    public Customer customer(@PathVariable(value="publicKeyHash") String publicKeyHash) {
+        return new Customer(publicKeyHash, "Rachelsmolen R1 Eindhoven\np.janissen@student.fontys.nl");
     }
 }
