@@ -20,15 +20,25 @@ public class Purchase {
     private boolean approved;
     private boolean processed;
     private List<Product> products;
-    private Date timestamp;
+    private Long timestamp;
 
-    public Purchase(int totalAmount, Customer customer, List<Product> products) {
+    public Purchase(int id, int totalAmount, Customer customer, boolean approved, boolean processed, List<Product> products, Long timestamp) {
+        this.id = id;
+        this.totalAmount = totalAmount;
+        this.customer = customer;
+        this.approved = approved;
+        this.processed = processed;
+        this.products = products;
+        this.timestamp = timestamp;
+    }
+
+    public Purchase(Customer customer, List<Product> products) {
         this.totalAmount = totalAmount;
         this.customer = customer;
         this.approved = false; 
         this.processed = false;
         this.products = products;
-        this.timestamp = new Date();
+        this.timestamp = System.currentTimeMillis() / 1000L;
     }
 
     public int getId() {
@@ -75,19 +85,11 @@ public class Purchase {
         this.products = products;
     }
 
-    public Date getTimestamp() {
+    public Long getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Date timestamp) {
+    public void setTimestamp(Long timestamp) {
         this.timestamp = timestamp;
     }
-    
-    
-    
-    
-    
-    
-    
-    
 }

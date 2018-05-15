@@ -9,11 +9,7 @@ import java.util.ArrayList;
  * Created by sguldemond on 15/05/2018.
  */
 public class ProductDatabaseImpl implements ProductDatabase {
-    private static final String DATABASE_NAME = "Products";
-    private static final String URL = "jdbc:sqlite:" + System.getProperty("user.dir") + DATABASE_NAME;
-
     private static ProductDatabaseImpl instance = null;
-
     private static Connection connection = null;
 
     public static ProductDatabaseImpl getInstance() {
@@ -24,16 +20,12 @@ public class ProductDatabaseImpl implements ProductDatabase {
         return instance;
     }
 
-    private ProductDatabaseImpl() {
-        createProductTable();
-    }
-
     @Override
     public void insertProduct(Product product) {
         String sql = "INSERT INTO Products (price, image_path, product_name, description, quantity, available) VALUES(?, ?, ?, ?, ?, ?)";
 
         try {
-            connect();
+            connection = ConnectionHandler.connect();
             PreparedStatement insertProduct = connection.prepareStatement(sql);
             insertProduct.setInt(1, product.getPrice());
             insertProduct.setString(2, product.getImagePath());
@@ -42,7 +34,7 @@ public class ProductDatabaseImpl implements ProductDatabase {
             insertProduct.setInt(5, product.getQuantity());
             insertProduct.setBoolean(6, product.isAvailable());
             insertProduct.executeUpdate();
-            disconnect();
+            ConnectionHandler.disconnect(connection);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -57,7 +49,7 @@ public class ProductDatabaseImpl implements ProductDatabase {
         String sql = "SELECT * FROM Products WHERE available = ?";
 
         try {
-            connect();
+            connection = ConnectionHandler.connect();
             PreparedStatement getAllProducts = connection.prepareStatement(sql);
             getAllProducts.setBoolean(1, available);
             ResultSet rs = getAllProducts.executeQuery();
@@ -71,15 +63,15 @@ public class ProductDatabaseImpl implements ProductDatabase {
                 boolean product_available = rs.getBoolean("available");
                 products.add(new Product(id, price, image_path, product_name, description, quantity, product_available));
             }
+            ConnectionHandler.disconnect(connection);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return products;
     }
 
-
-    private static void createProductTable() {
-        String tableName = "Products";
+    public static void createProductTable() {
+        String tableName = "product";
         String sql = "CREATE TABLE IF NOT EXISTS " + tableName + " " +
                 "(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "price INT, " +
@@ -89,37 +81,8 @@ public class ProductDatabaseImpl implements ProductDatabase {
                 "quantity INT, " +
                 "available INT)";
 
-        try {
-            connect();
-            Statement statement = connection.createStatement();
-            statement.execute(sql);
-            statement.close();
-            disconnect();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        ConnectionHandler.executeStatement(sql, connection);
 
-        System.out.println("Table " + tableName + " created successfully");
-    }
-
-    private static void connect() {
-        try {
-            System.out.println("Connecting to database...");
-            System.out.println("URL: " + URL);
-            connection = DriverManager.getConnection(URL);
-            System.out.println("Connected!");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static void disconnect() {
-        try {
-            System.out.println("Disconnecting from database...");
-            connection.close();
-            System.out.println("Disconnected!");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        System.out.println("Table '" + tableName + "' created successfully");
     }
 }
