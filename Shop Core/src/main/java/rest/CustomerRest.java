@@ -2,9 +2,16 @@ package rest;
 
 import Models.Customer;
 import org.springframework.web.bind.annotation.*;
+import service.CustomerService;
 
 @RestController
 public class CustomerRest {
+
+    private CustomerService customerService;
+
+    public CustomerRest() {
+        this.customerService = new CustomerService();
+    }
 
     /**
      * Gets the customer with this publicKeyHash.
@@ -13,6 +20,6 @@ public class CustomerRest {
      */
     @RequestMapping(method= RequestMethod.GET, value="/customer/get/{publicKeyHash}")
     public Customer customer(@PathVariable(value="publicKeyHash") String publicKeyHash) {
-        return new Customer(publicKeyHash, "Rachelsmolen R1 Eindhoven\np.janissen@student.fontys.nl");
+        return this.customerService.getCustomer(publicKeyHash);
     }
 }
