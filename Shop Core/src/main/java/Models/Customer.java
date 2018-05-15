@@ -26,9 +26,8 @@ public class Customer {
         return details;
     }
 
-    
-    
-    
-
-    
+    @Override
+    public String toString() {
+        return String.format("{0} has the following details:\n{1}", this.getPublicKeyHash(), this.getDetails());
+    }
 }
