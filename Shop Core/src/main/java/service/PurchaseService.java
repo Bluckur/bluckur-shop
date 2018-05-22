@@ -1,10 +1,11 @@
 package service;
 
-import Models.Product;
+import Models.Purchase;
 import dao.PurchaseDAO;
 import dao.PurchaseDAOImpl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PurchaseService {
     private PurchaseDAO purchaseDAO;
@@ -13,15 +14,21 @@ public class PurchaseService {
         this.purchaseDAO = new PurchaseDAOImpl();
     }
 
-    public List<Product> getAllPurchases() {
+    public List<Purchase> getAllPurchases() {
         return this.purchaseDAO.getAllPurchases();
     }
 
-    public Product getPurchase(String id) {
+    public Purchase getPurchase(int id) {
         return this.purchaseDAO.getPurchase(id);
     }
 
-    public List<Product> getPurchasesBy(String publicKeyHash) {
+    public List<Purchase> getPurchasesBy(String publicKeyHash) {
         return this.purchaseDAO.getPurchasesBy(publicKeyHash);
+    }
+
+    public List<Purchase> getUnprocessedPurchases() {
+        return this.purchaseDAO.getAllPurchases().stream()
+                .filter(purchase -> !purchase.isProcessed())
+                .collect(Collectors.toList());
     }
 }
