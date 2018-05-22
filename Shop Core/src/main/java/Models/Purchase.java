@@ -22,7 +22,8 @@ public class Purchase {
     private List<Product> products;
     private Date timestamp;
 
-    public Purchase(int totalAmount, Customer customer, List<Product> products) {
+    public Purchase(int id, int totalAmount, Customer customer, List<Product> products) {
+        this.id = id;
         this.totalAmount = totalAmount;
         this.customer = customer;
         this.approved = false; 

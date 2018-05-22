@@ -1,6 +1,7 @@
 package rest;
 
 import Models.Product;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import service.ProductService;
@@ -24,7 +25,7 @@ public class ProductRest {
     }
 
     @RequestMapping("product/get/{id}")
-    public Product getProduct(@PathParam("id") String id) {
+    public Product getProduct(@PathVariable("id") String id) {
         return this.productService.getProduct(id);
     }
 }
