@@ -4,10 +4,7 @@ import Models.Customer;
 import Models.Product;
 import Models.Purchase;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class PurchaseDAOImpl implements PurchaseDAO {
@@ -22,7 +19,7 @@ public class PurchaseDAOImpl implements PurchaseDAO {
         Map<Product, Integer> productsList1 = new HashMap<>();
         productsList1.put(product1, 16);
         productsList1.put(product2, 12);
-        purchaseMocks.add(new Purchase(1, 40, customer1, false, false, productsList1));
+        purchaseMocks.add(new Purchase(1, customer1, false, false, productsList1, new Date()));
     }
 
     @Override

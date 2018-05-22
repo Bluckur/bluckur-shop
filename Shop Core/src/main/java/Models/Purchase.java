@@ -51,6 +51,15 @@ public class Purchase {
      */
     private Date timestamp;
 
+    /**
+     * Create a purchase
+     * @param id {@link #id}
+     * @param customer {@link #customer}
+     * @param approved {@link #approved}
+     * @param processed {@link #processed}
+     * @param products {@link #products}
+     * @param timestamp {@link #timestamp}
+     */
     public Purchase(int id, Customer customer, boolean approved, boolean processed, Map<Product, Integer> products, Date timestamp) {
         if (id < 0) {
             throw new IllegalArgumentException("id cannot be a negative value.");
@@ -63,38 +72,10 @@ public class Purchase {
         this.id = id;
         this.timestamp = timestamp;
 
-        if (customer == null) {
-            throw new IllegalArgumentException("customer cannot be null.");
-        }
-
-        if (processed && !approved) {
-            throw new IllegalArgumentException("a purchase cannot be processed when not yet approved.");
-        }
-
-        if (products == null) {
-            throw new IllegalArgumentException("products cannot be null.");
-        }
-
-        if (products.size() <= 0) {
-            throw new IllegalArgumentException("products needs to contain at least one item");
-        }
-
-        if (products.values().stream().anyMatch(quantity -> quantity <= 0)) {
-            throw new IllegalArgumentException("products cannot contain a record with 0 or less quantity of a product.");
-        }
-
-        this.setTotalAmount(totalAmount);
         this.setCustomer(customer);
         this.setApproved(approved);
         this.setProcessed(processed);
         this.setProducts(products);
-
-        this.totalAmount = totalAmount;
-        this.customer = customer;
-        this.approved = false; 
-        this.processed = false;
-        this.products = products;
-        this.timestamp = new Date();
     }
 
     /**
@@ -110,15 +91,7 @@ public class Purchase {
      * @return {@link #totalAmount}
      */
     public int getTotalAmount() {
-        return totalAmount;
-    }
-
-    private void setTotalAmount(int totalAmount) {
-        if (totalAmount < 0) {
-            throw new IllegalArgumentException("totalAmount cannot a negative value.");
-        }
-
-        this.totalAmount = totalAmount;
+        return this.products.values().stream().mapToInt(Number::intValue).sum();
     }
 
     /**
@@ -129,7 +102,15 @@ public class Purchase {
         return customer;
     }
 
+    /**
+     * Set the customer who placed the purchase.
+     * @param customer {@link #customer}
+     */
     public void setCustomer(Customer customer) {
+        if (customer == null) {
+            throw new IllegalArgumentException("customer cannot be null.");
+        }
+
         this.customer = customer;
     }
 
@@ -141,6 +122,10 @@ public class Purchase {
         return approved;
     }
 
+    /**
+     * Set whether the purchase has been approved.
+     * @param approved {@link #approved}
+     */
     public void setApproved(boolean approved) {
         this.approved = approved;
     }
@@ -153,7 +138,15 @@ public class Purchase {
         return processed;
     }
 
+    /**
+     * Set whether the purchase has been processed.
+     * @param processed the new value for {@link #processed}
+     */
     public void setProcessed(boolean processed) {
+        if (processed && !this.approved) {
+            throw new IllegalArgumentException("A purchase cannot be processed when not yet approved.");
+        }
+
         this.processed = processed;
     }
 
@@ -165,7 +158,25 @@ public class Purchase {
         return products;
     }
 
+    /**
+     * Set the map of ordered products and their quantities.
+     * There must be at least one record in the map.
+     * There can be no records with a non-positive quantity.
+     * @param products the new {@link #products}
+     */
     public void setProducts( Map<Product, Integer> products) {
+        if (products == null) {
+            throw new IllegalArgumentException("products cannot be null.");
+        }
+
+        if (products.size() <= 0) {
+            throw new IllegalArgumentException("products needs to contain at least one item");
+        }
+
+        if (products.values().stream().anyMatch(quantity -> quantity <= 0)) {
+            throw new IllegalArgumentException("products cannot contain a record with 0 or less quantity of a product.");
+        }
+
         this.products = products;
     }
 
