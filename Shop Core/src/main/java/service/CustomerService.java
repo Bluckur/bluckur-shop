@@ -12,6 +12,9 @@ public class CustomerService {
     }
 
     public Customer getCustomer(String publicKeyHash) {
+        if (publicKeyHash == null || publicKeyHash.isEmpty()) {
+            throw new IllegalArgumentException("publicKeyHash can neither be null nor empty.");
+        }
         return this.customerDAO.getCustomer(publicKeyHash);
     }
 }

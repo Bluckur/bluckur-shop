@@ -10,4 +10,8 @@ public interface PurchaseDAO {
     Purchase getPurchase(int id);
 
     List<Purchase> getPurchasesBy(String publicKeyHash);
+
+    int addPurchase(Purchase purchase);
+
+    Purchase updatePurchase(Purchase purchase);
 }

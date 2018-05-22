@@ -18,4 +18,14 @@ public class ProductDAOImpl implements ProductDAO{
     public Product getProduct(String id) {
         return new Product(Integer.parseInt(id), 12, "/img/products/0001/001", "Java Sleutelhanger", "Flitse flexe sleutelhanger met ledlampje & JTech logo.", 200);
     }
+
+    @Override
+    public int addProduct(Product product) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Product updateProduct(Product product) {
+        throw new UnsupportedOperationException();
+    }
 }

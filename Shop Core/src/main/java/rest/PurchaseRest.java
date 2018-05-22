@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import service.PurchaseService;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
@@ -34,5 +35,16 @@ public class PurchaseRest {
     @RequestMapping("purchase/get/unprocessed")
     public List<Purchase> getUnprocessedPurchases() {
         return this.purchaseService.getUnprocessedPurchases();
+    }
+
+    @RequestMapping("purchase/process/{id}")
+    public boolean processPurchase(@PathParam("id") int id) {
+        Purchase purchase = this.purchaseService.getPurchase(id);
+
+        if (purchase != null) {
+            return this.purchaseService.processPurchase(purchase);
+        }
+
+        return false;
     }
 }

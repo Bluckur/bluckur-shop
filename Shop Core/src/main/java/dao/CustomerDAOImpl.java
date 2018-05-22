@@ -7,4 +7,14 @@ public class CustomerDAOImpl implements CustomerDAO {
     public Customer getCustomer(String publicKeyHash) {
         return new Customer(publicKeyHash, "Rachelsmolen R1 Eindhoven\np.janissen@student.fontys.nl");
     }
+
+    @Override
+    public int addCustomer(Customer customer) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Customer updateCustomer(Customer customer) {
+        throw new UnsupportedOperationException();
+    }
 }

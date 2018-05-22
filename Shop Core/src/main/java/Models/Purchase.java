@@ -5,9 +5,9 @@
  */
 package Models;
 
-import java.sql.Time;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -19,10 +19,10 @@ public class Purchase {
     private Customer customer;
     private boolean approved;
     private boolean processed;
-    private List<Product> products;
+    private Map<Product, Integer> products;
     private Date timestamp;
 
-    public Purchase(int id, int totalAmount, Customer customer, List<Product> products) {
+    public Purchase(int id, int totalAmount, Customer customer, Map<Product, Integer> products) {
         this.id = id;
         this.totalAmount = totalAmount;
         this.customer = customer;
@@ -68,11 +68,11 @@ public class Purchase {
         this.processed = processed;
     }
 
-    public List<Product> getProducts() {
+    public  Map<Product, Integer> getProducts() {
         return products;
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProducts( Map<Product, Integer> products) {
         this.products = products;
     }
 
