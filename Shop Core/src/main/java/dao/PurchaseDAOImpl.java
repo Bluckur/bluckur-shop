@@ -22,7 +22,7 @@ public class PurchaseDAOImpl implements PurchaseDAO {
         Map<Product, Integer> productsList1 = new HashMap<>();
         productsList1.put(product1, 16);
         productsList1.put(product2, 12);
-        purchaseMocks.add(new Purchase(1, 40, customer1, productsList1));
+        purchaseMocks.add(new Purchase(1, 40, customer1, false, false, productsList1));
     }
 
     @Override

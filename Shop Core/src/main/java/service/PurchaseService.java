@@ -51,7 +51,7 @@ public class PurchaseService {
         if (purchase == null) {
             throw new IllegalArgumentException("purchase cannot be null.");
         }
-        
+
         if (purchase.isProcessed()) {
             return false;
         }
