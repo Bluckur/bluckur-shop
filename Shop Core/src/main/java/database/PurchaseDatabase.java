@@ -10,5 +10,7 @@ import java.util.ArrayList;
  */
 public interface PurchaseDatabase {
     void insertPurchase(Purchase purchase);
-    ArrayList<Purchase> getAllPurchases();
+    Purchase get(Long id);
+    ArrayList<Purchase> getAll();
+    void createTable();
 }

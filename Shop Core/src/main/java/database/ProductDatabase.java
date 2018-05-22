@@ -9,5 +9,7 @@ import java.util.ArrayList;
  */
 public interface ProductDatabase {
     void insertProduct(Product product);
-    ArrayList<Product> getAllProducts(boolean available);
+    Product get(Long id);
+    ArrayList<Product> getAll(boolean available);
+    void createTable();
 }

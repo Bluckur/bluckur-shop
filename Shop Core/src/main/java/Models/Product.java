@@ -18,6 +18,8 @@ public class Product {
     private int quantity;
     private boolean available;
 
+    public Product() {}
+
     public Product(int id, int price, String imagePath, String name, String description, int quantity, boolean available) {
         this(price, imagePath, name, description, quantity, available);
         this.id = id;

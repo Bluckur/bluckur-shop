@@ -1,30 +1,49 @@
+import Models.Customer;
 import Models.Product;
-import database.ProductDatabaseImpl;
-import database.PurchaseDatabaseImp;
+import Models.Purchase;
+import database.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by sguldemond on 15/05/2018.
  */
 public class main {
     public static void main(String[] argv) {
-        ProductDatabaseImpl productDatabaseImp = ProductDatabaseImpl.getInstance();
-        PurchaseDatabaseImp purchaseDatabaseImp = PurchaseDatabaseImp.getInstance();
+        ProductDatabase productDatabase = ProductDatabaseImpl.getInstance();
+        CustomerDatabase customerDatabase = CustomerDatabaseImpl.getInstance();
+        PurchaseDatabase purchaseDatabase = PurchaseDatabaseImp.getInstance();
 
-        productDatabaseImp.createProductTable();
-        purchaseDatabaseImp.createPurchaseTable();
-        purchaseDatabaseImp.createPurchaseDetailTable();
+        productDatabase.createTable();
+        customerDatabase.createTable();
+        purchaseDatabase.createTable();
 
 
-//        productDatabase.insertProduct(new Product(10, "image.path", "product name", "this is a product", 10, true));
-//        productDatabase.insertProduct(new Product(10, "image.path", "product name", "this is a product", 10, false));
-//
-//        ArrayList<Product> allProducts1 = productDatabase.getAllProducts(true);
-//        ArrayList<Product> allProducts2 = productDatabase.getAllProducts(false);
-//        System.out.println(allProducts1.size());
-//        System.out.println(allProducts2.size());
+        Product product1 = new Product(10, "image.path1", "product name1", "this is a product1", 20, true);
+        Product product2 = new Product(5, "image.path2", "product name2", "this is a product2", 10, false);
+        Map<Product, Integer> products = new HashMap<>();
 
+        productDatabase.insertProduct(product1);
+        productDatabase.insertProduct(product2);
+
+        product1 = productDatabase.get(1l);
+        product2 = productDatabase.get(2l);
+
+        products.put(product1, 1);
+        products.put(product2, 3);
+
+        Customer customer1 = new Customer("test_hash", "test_details");
+        customerDatabase.insertCustomer(customer1);
+        customer1 = customerDatabase.get(1l);
+
+
+        Purchase purchase1 = new Purchase(customer1, products);
+
+        purchaseDatabase.insertPurchase(purchase1);
+
+        Purchase purchase = purchaseDatabase.get(1l);
 
         System.out.println("END!");
     }

@@ -16,9 +16,10 @@ public class ConnectionHandler {
         Connection connection = null;
 
         try {
-            System.out.println("Connecting to database...");
-            System.out.println("URL: " + URL);
+//            System.out.println("Connecting to database...");
+//            System.out.println("URL: " + URL);
             connection = DriverManager.getConnection(URL);
+            enableForeignKeys(connection);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -26,18 +27,27 @@ public class ConnectionHandler {
         return connection;
     }
 
+    private static void enableForeignKeys(Connection connection) {
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute("PRAGMA foreign_keys = ON;");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void disconnect(Connection connection) {
         try {
-            System.out.println("Disconnecting from database...");
+//            System.out.println("Disconnecting from database...");
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public static void executeStatement(String sql, Connection connection) {
+    public static void executeStatement(String sql) {
         try {
-            connection = ConnectionHandler.connect();
+            Connection connection = ConnectionHandler.connect();
             Statement statement = connection.createStatement();
             statement.execute(sql);
             statement.close();

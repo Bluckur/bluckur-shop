@@ -10,8 +10,16 @@ package Models;
  * @author Ronal
  */
 public class Customer {
+    private Long id;
     private String publicKeyHash;
     private String details;
+
+    public Customer() {}
+
+    public Customer(Long id, String publicKeyHash, String details) {
+        this(publicKeyHash, details);
+        this.id = id;
+    }
 
     public Customer(String publicKeyHash, String details) {
         this.publicKeyHash = publicKeyHash;
@@ -26,9 +34,12 @@ public class Customer {
         return details;
     }
 
-    
-    
-    
 
-    
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

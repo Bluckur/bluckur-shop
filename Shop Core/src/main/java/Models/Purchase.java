@@ -8,6 +8,7 @@ package Models;
 import java.sql.Time;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -19,10 +20,10 @@ public class Purchase {
     private Customer customer;
     private boolean approved;
     private boolean processed;
-    private List<Product> products;
+    private Map<Product, Integer> products;
     private Long timestamp;
 
-    public Purchase(int id, int totalAmount, Customer customer, boolean approved, boolean processed, List<Product> products, Long timestamp) {
+    public Purchase(int id, int totalAmount, Customer customer, boolean approved, boolean processed, Map<Product, Integer> products, Long timestamp) {
         this.id = id;
         this.totalAmount = totalAmount;
         this.customer = customer;
@@ -32,8 +33,9 @@ public class Purchase {
         this.timestamp = timestamp;
     }
 
-    public Purchase(Customer customer, List<Product> products) {
-        this.totalAmount = totalAmount;
+    public Purchase(Customer customer, Map<Product, Integer> products) {
+        // TODO: calculate total amount from product list
+        this.totalAmount = 0;
         this.customer = customer;
         this.approved = false; 
         this.processed = false;
@@ -77,19 +79,19 @@ public class Purchase {
         this.processed = processed;
     }
 
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
-
     public Long getTimestamp() {
         return timestamp;
     }
 
     public void setTimestamp(Long timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public Map<Product, Integer> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Map<Product, Integer> products) {
+        this.products = products;
     }
 }
