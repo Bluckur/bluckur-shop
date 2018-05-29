@@ -1,0 +1,28 @@
+<mat-grid-list cols="1" rowHeight="500px">
+  <mat-grid-tile [colspan]="1">
+    <mat-card class="example-container">
+      <mat-form-field>
+    <input matInput placeholder="Name" [(ngModel)]="product.name">
+      </mat-form-field>
+
+      <mat-form-field>
+        <textarea matInput placeholder="Description" [(ngModel)]="product.description" style= "resize:vertical"></textarea>
+      </mat-form-field>
+
+      <!-- <input type="file" id="uploadFileInput"/> -->
+      <button mat-icon-button color="primary">
+        <mat-icon aria-label="Example icon-button with a heart icon">add_a_photo</mat-icon>
+      </button>
+
+      <mat-form-field>
+        <input matInput placeholder="Price" type="number" [(ngModel)]="product.price">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Quantity" type="number" [(ngModel)]="product.quantity">
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="addProduct()">Add</button>
+
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

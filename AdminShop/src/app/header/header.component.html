@@ -1,10 +1,12 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" style="margin-bottom:3%">
   <mat-toolbar-row>
-      <span>AdminShop</span>
-      <span class="example-spacer"></span>
-      <mat-icon class="example-icon">search</mat-icon>
-      <mat-icon class="example-icon">add</mat-icon>
-      <mat-icon class="example-icon" [routerLink]="['products']">list</mat-icon>
+    <span>AdminShop</span>
+    <span class="example-spacer"></span>
+    <mat-icon class="example-icon">search</mat-icon>
+    <mat-icon class="example-icon" [routerLink]="['addproduct']">add</mat-icon>
+    <mat-icon class="example-icon" [routerLink]="['products']">list</mat-icon>
+    <button mat-icon-button color="white" (click)="logout()">
       <mat-icon class="example-icon">exit_to_app</mat-icon>
-    </mat-toolbar-row>
+    </button>
+  </mat-toolbar-row>
 </mat-toolbar>

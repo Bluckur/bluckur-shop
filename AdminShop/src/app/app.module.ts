@@ -2,19 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http'; 
 
-
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule, MatToolbar, MatToolbarModule, MatIconModule } from '@angular/material';
-import { MatInputModule } from '@angular/material/input';
-
-
-
+import { MaterialModule } from './material.module';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { ProductsComponent } from './product/products/products.component';
 import { ProductDetailComponent } from './product/product-detail/product-detail.component';
+import { ProductAddComponent } from './product/product-add/product-add.component';
 import { PurchasesComponent } from './purchase/purchases/purchases.component';
 import { PurchaseDetailComponent } from './purchase/purchase-detail/purchase-detail.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +17,11 @@ import { ProductService } from './api/product.service';
 import { PurchaseService } from './api/purchase.service';
 import { CustomerService } from './api/customer.service';
 import { HeaderComponent } from './header/header.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import {DataSource} from '@angular/cdk/table';
+import { CdkTableModule} from '@angular/cdk/table';
+
 
 
 @NgModule({
@@ -30,6 +30,7 @@ import { HeaderComponent } from './header/header.component';
     LoginComponent,
     ProductsComponent,
     ProductDetailComponent,
+    ProductAddComponent,
     PurchasesComponent,
     PurchaseDetailComponent,
     HeaderComponent
@@ -39,8 +40,10 @@ import { HeaderComponent } from './header/header.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MatButtonModule, MatCheckboxModule, MatInputModule, MatToolbarModule, MatIconModule
+    FormsModule,
+    MaterialModule,
   ],
+  entryComponents: [ProductsComponent, ProductDetailComponent],
   providers: [ProductService, PurchaseService, CustomerService],
   bootstrap: [AppComponent]
 })
