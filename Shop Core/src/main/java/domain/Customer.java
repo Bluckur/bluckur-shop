@@ -31,6 +31,8 @@ public class Customer {
      */
     private String details;
 
+    private Long balance;
+
     public Customer() { }
 
     /**
@@ -50,6 +52,7 @@ public class Customer {
 
         this.publicKeyHash = publicKeyHash;
         this.details = details;
+        this.balance = 0l;
     }
 
     /**
@@ -74,5 +77,13 @@ public class Customer {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Long balance) {
+        this.balance = balance;
     }
 }

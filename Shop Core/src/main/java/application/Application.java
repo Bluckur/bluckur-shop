@@ -5,6 +5,7 @@ import domain.Product;
 import domain.ProductLine;
 import domain.Purchase;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import repository.ProductRepository;
 import service.CustomerService;
@@ -20,11 +21,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import service.PurchaseService;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-@SpringBootApplication(scanBasePackageClasses = { ProductService.class, ProductRepository.class })
+@SpringBootApplication(scanBasePackages = { "rest", "service", "repository" })
 @EntityScan("domain")
 @EnableJpaRepositories("repository")
 public class Application implements CommandLineRunner {
@@ -46,12 +45,12 @@ public class Application implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... strings) throws Exception {
+    public void run(String... strings) {
         log.info("START TEST");
 
-        Product productMug = productService.addProduct(new Product(1000, "image path 1", "mug", "to drink from", 100));
-        Product productShirt = productService.addProduct(new Product(2000, "image path 2", "shirt", "to wear", 20));
-        Product productCar = productService.addProduct(new Product(3000, "image path 3", "car", "to drive", 1));
+        Product productMug = productService.addProduct(new Product(1, "image path 1", "mug", "to drink from", 100));
+        Product productShirt = productService.addProduct(new Product(2, "image path 2", "shirt", "to wear", 20));
+        Product productCar = productService.addProduct(new Product(3, "image path 3", "car", "to drive", 1));
 
         ArrayList<ProductLine> products = new ArrayList<>();
 
@@ -70,6 +69,8 @@ public class Application implements CommandLineRunner {
 
         List<Purchase> purchasesByStan = purchaseService.getPurchasesBy(customerStan);
 
+        Customer customer = customerService.getCustomer("123");
+        log.info(customer.getDetails());
 
         log.info("END TEST");
     }

@@ -87,7 +87,13 @@ public class Purchase {
      * @return {@link #totalAmount}
      */
     public int getTotalAmount() {
-        throw new NotImplementedException();
+        int totalAmount = 0;
+
+        for(ProductLine productLine : products) {
+            totalAmount += productLine.getProduct().getPrice() * productLine.getAmount();
+        }
+
+        return totalAmount;
     }
 
     /**
@@ -103,10 +109,6 @@ public class Purchase {
      * @param customer {@link #customer}
      */
     public void setCustomer(Customer customer) {
-        if (customer == null) {
-            throw new IllegalArgumentException("customer cannot be null.");
-        }
-
         this.customer = customer;
     }
 
@@ -139,10 +141,6 @@ public class Purchase {
      * @param processed the new value for {@link #processed}
      */
     public void setProcessed(boolean processed) {
-        if (processed && !this.approved) {
-            throw new IllegalArgumentException("A purchase cannot be processed when not yet approved.");
-        }
-
         this.processed = processed;
     }
 

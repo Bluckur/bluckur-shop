@@ -1,6 +1,7 @@
 package rest;
 
 import domain.Customer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import service.CustomerService;
 import service.CustomerServiceImpl;
@@ -8,6 +9,7 @@ import service.CustomerServiceImpl;
 @RestController
 public class CustomerRest {
 
+    @Autowired
     private CustomerService customerService;
 
     public CustomerRest() {

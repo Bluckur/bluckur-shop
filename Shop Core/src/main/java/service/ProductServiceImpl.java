@@ -13,7 +13,6 @@ import java.util.List;
  * Created by sguldemond on 29/05/2018.
  */
 @Service
-//@ComponentScan(basePackageClasses = { ProductRepository.class })
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
