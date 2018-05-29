@@ -3,19 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Models;
+package domain;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * A purchase of a list of products.
  */
+@Entity
 public class Purchase {
     /**
      * The id of the purchase.
      */
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     /**
@@ -26,6 +31,7 @@ public class Purchase {
     /**
      * The customer who did of the purchase.
      */
+    @ManyToOne
     private Customer customer;
 
     /**
@@ -44,38 +50,28 @@ public class Purchase {
     /**
      * A map of the ordered products and the amount of products ordered.
      */
-    private Map<Product, Integer> products;
+    @OneToMany(cascade = CascadeType.PERSIST)
+    private List<ProductLine> products;
 
     /**
      * The timestamp in GMT when the purchase was placed.
      */
     private Date timestamp;
 
+    public Purchase() { }
+
     /**
      * Create a purchase
-     * @param id {@link #id}
      * @param customer {@link #customer}
-     * @param approved {@link #approved}
-     * @param processed {@link #processed}
      * @param products {@link #products}
-     * @param timestamp {@link #timestamp}
      */
-    public Purchase(int id, Customer customer, boolean approved, boolean processed, Map<Product, Integer> products, Date timestamp) {
-        if (id < 0) {
-            throw new IllegalArgumentException("id cannot be a negative value.");
-        }
+    public Purchase(Customer customer, List<ProductLine> products) {
+        this.approved = false;
+        this.processed = false;
+        this.timestamp = new Date();
 
-        if (timestamp.after(new Date())) {
-            throw new IllegalArgumentException("timestamp cannot be in the future.");
-        }
-
-        this.id = id;
-        this.timestamp = timestamp;
-
-        this.setCustomer(customer);
-        this.setApproved(approved);
-        this.setProcessed(processed);
-        this.setProducts(products);
+        this.customer = customer;
+        this.products = products;
     }
 
     /**
@@ -91,7 +87,7 @@ public class Purchase {
      * @return {@link #totalAmount}
      */
     public int getTotalAmount() {
-        return this.products.values().stream().mapToInt(Number::intValue).sum();
+        throw new NotImplementedException();
     }
 
     /**
@@ -150,33 +146,11 @@ public class Purchase {
         this.processed = processed;
     }
 
-    /**
-     * Get the map of ordered products and their quantities.
-     * @return {@link #products}
-     */
-    public  Map<Product, Integer> getProducts() {
+    public List<ProductLine> getProducts() {
         return products;
     }
 
-    /**
-     * Set the map of ordered products and their quantities.
-     * There must be at least one record in the map.
-     * There can be no records with a non-positive quantity.
-     * @param products the new {@link #products}
-     */
-    public void setProducts( Map<Product, Integer> products) {
-        if (products == null) {
-            throw new IllegalArgumentException("products cannot be null.");
-        }
-
-        if (products.size() <= 0) {
-            throw new IllegalArgumentException("products needs to contain at least one item");
-        }
-
-        if (products.values().stream().anyMatch(quantity -> quantity <= 0)) {
-            throw new IllegalArgumentException("products cannot contain a record with 0 or less quantity of a product.");
-        }
-
+    public void setProducts(List<ProductLine> products) {
         this.products = products;
     }
 

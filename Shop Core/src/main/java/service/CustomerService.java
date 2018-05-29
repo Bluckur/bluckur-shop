@@ -1,20 +1,20 @@
 package service;
 
-import Models.Customer;
-import dao.CustomerDAO;
-import dao.CustomerDAOImpl;
+import domain.Customer;
 
-public class CustomerService {
-    private CustomerDAO customerDAO;
+import java.util.List;
 
-    public CustomerService() {
-        this.customerDAO = new CustomerDAOImpl();
-    }
+public interface CustomerService {
 
-    public Customer getCustomer(String publicKeyHash) {
-        if (publicKeyHash == null || publicKeyHash.isEmpty()) {
-            throw new IllegalArgumentException("publicKeyHash can neither be null nor empty.");
-        }
-        return this.customerDAO.getCustomer(publicKeyHash);
-    }
+    public Customer getCustomer(String publicKeyHash);
+
+    public Customer getCustomer(Long id);
+
+    public Customer addCustomer(Customer customer);
+
+    public Customer updateCustomer(Customer customer);
+
+    public List<Customer> getAllCustomers();
+
+
 }

@@ -1,10 +1,15 @@
 package rest;
 
-import Models.Purchase;
+import domain.Customer;
+import domain.Product;
+import domain.Purchase;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import service.CustomerService;
+import service.CustomerServiceImpl;
 import service.PurchaseService;
+import service.PurchaseServiceImpl;
 
 import javax.websocket.server.PathParam;
 import java.util.List;
@@ -12,9 +17,11 @@ import java.util.List;
 @RestController
 public class PurchaseRest {
     private PurchaseService purchaseService;
+    private CustomerService customerService;
 
     public PurchaseRest() {
-        this.purchaseService = new PurchaseService();
+        this.purchaseService = new PurchaseServiceImpl();
+        this.customerService = new CustomerServiceImpl();
     }
 
     @RequestMapping("purchase/get/all")
@@ -23,13 +30,15 @@ public class PurchaseRest {
     }
 
     @RequestMapping("purchase/get/{id}")
-    public Purchase getPurchase(@PathVariable("id") int id) {
+    public Purchase getPurchase(@PathVariable("id") Long id) {
         return this.purchaseService.getPurchase(id);
     }
 
     @RequestMapping("purchase/get/by/{publicKeyHash}")
     public List<Purchase> getPurchasesBy(@PathVariable("publicKeyHash") String publicKeyHash) {
-        return this.purchaseService.getPurchasesBy(publicKeyHash);
+        Customer customer = customerService.getCustomer(publicKeyHash);
+
+        return this.purchaseService.getPurchasesBy(customer);
     }
 
     @RequestMapping("purchase/get/unprocessed")
@@ -38,13 +47,13 @@ public class PurchaseRest {
     }
 
     @RequestMapping("purchase/process/{id}")
-    public boolean processPurchase(@PathParam("id") int id) {
+    public Purchase processPurchase(@PathParam("id") Long id) {
         Purchase purchase = this.purchaseService.getPurchase(id);
 
         if (purchase != null) {
             return this.purchaseService.processPurchase(purchase);
         }
 
-        return false;
+        return new Purchase();
     }
 }

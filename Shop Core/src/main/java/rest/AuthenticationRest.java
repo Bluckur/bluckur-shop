@@ -1,6 +1,6 @@
 package rest;
 
-import Models.Customer;
+import domain.Customer;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;

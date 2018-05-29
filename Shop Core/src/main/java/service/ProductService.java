@@ -1,56 +1,21 @@
 package service;
 
-import Models.Product;
-import dao.ProductDAO;
-import dao.ProductDAOImpl;
+import domain.Product;
 
 import java.util.List;
 
-public class ProductService {
-    private ProductDAO productDAO;
+public interface ProductService {
 
-    public ProductService() {
-        this.productDAO = new ProductDAOImpl();
-    }
+    public List<Product> getAllProducts();
 
-    public List<Product> getAllProducts() {
-        return this.productDAO.getAllProducts();
-    }
+    public Product getProduct(Long id);
 
-    public Product getProduct(String id) {
-        if (id == null || id.isEmpty()) {
-            throw new IllegalArgumentException("ID can neither be null nor empty");
-        }
+    public List<Product> getProduct(String name);
 
-        return this.productDAO.getProduct(id);
-    }
+    public void lowerStock(Product product, int quantity);
 
-    protected void lowerStock(Product product, int quantity) {
-        if (product == null) {
-            throw new IllegalArgumentException("Product can not be null.");
-        }
+    public Product addProduct(Product product);
 
-        if (quantity <= 0) {
-            throw new IllegalArgumentException("Quantity cannot be negative.");
-        }
+    public Product updateProduct(Product product);
 
-        product.setQuantity(product.getQuantity() - quantity);
-        productDAO.updateProduct(product);
-    }
-
-    public int addProduct(Product product) {
-        if (product == null) {
-            throw new IllegalArgumentException("Product can not be null.");
-        }
-
-        return this.productDAO.addProduct(product);
-    }
-
-    public Product updateProduct(Product product) {
-        if (product == null) {
-            throw new IllegalArgumentException("Product can not be null.");
-        }
-
-        return this.productDAO.updateProduct(product);
-    }
 }

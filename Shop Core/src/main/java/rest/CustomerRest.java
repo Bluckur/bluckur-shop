@@ -1,8 +1,9 @@
 package rest;
 
-import Models.Customer;
+import domain.Customer;
 import org.springframework.web.bind.annotation.*;
 import service.CustomerService;
+import service.CustomerServiceImpl;
 
 @RestController
 public class CustomerRest {
@@ -10,7 +11,7 @@ public class CustomerRest {
     private CustomerService customerService;
 
     public CustomerRest() {
-        this.customerService = new CustomerService();
+        this.customerService = new CustomerServiceImpl();
     }
 
     /**

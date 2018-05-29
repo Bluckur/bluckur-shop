@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Models;
+package domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -51,20 +51,13 @@ public class Product {
 
     /**
      * Create a new Product.
-     * @param id {@link #id}
      * @param price {@link #price}
      * @param imagePath {@link #imagePath}
      * @param name {@link #name}
      * @param description {@link #description}
      * @param quantity {@link #quantity}
      */
-    public Product(int id, int price, String imagePath, String name, String description, int quantity) {
-        if (id < 0) {
-            throw new IllegalArgumentException("id cannot be a negative value.");
-        }
-
-        this.id = id;
-
+    public Product(int price, String imagePath, String name, String description, int quantity) {
         this.setPrice(price);
         this.setImagePath(imagePath);
         this.setName(name);

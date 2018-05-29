@@ -3,15 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Models;
+package domain;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  * A customer of the shop.
  */
 @Entity
 public class Customer {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
     /**
      * A hash of the public key is stored here to be able to identify the user.
      */
@@ -22,6 +30,8 @@ public class Customer {
      * Can be empty.
      */
     private String details;
+
+    public Customer() { }
 
     /**
      * Create a new user.
@@ -56,5 +66,13 @@ public class Customer {
      */
     public String getDetails() {
         return this.details;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
