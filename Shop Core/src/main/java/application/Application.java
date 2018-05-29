@@ -5,9 +5,7 @@ import domain.Product;
 import domain.ProductLine;
 import domain.Purchase;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import repository.ProductRepository;
 import service.CustomerService;
 import service.ProductService;
 
@@ -23,7 +21,7 @@ import service.PurchaseService;
 import java.util.ArrayList;
 import java.util.List;
 
-@SpringBootApplication(scanBasePackages = { "rest", "service", "repository" })
+@SpringBootApplication(scanBasePackages = {"controller", "service", "repository" })
 @EntityScan("domain")
 @EnableJpaRepositories("repository")
 public class Application implements CommandLineRunner {
