@@ -1,13 +1,14 @@
-package rest;
+package controller;
 
 import domain.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import service.CustomerService;
-import service.CustomerServiceImpl;
 
 @RestController
-public class CustomerRest {
+public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
@@ -18,7 +19,8 @@ public class CustomerRest {
      * @return the customer found, null if no customer was found.
      */
     @RequestMapping(method= RequestMethod.GET, value="/customer/get/{publicKeyHash}")
-    public Customer customer(@PathVariable(value="publicKeyHash") String publicKeyHash) {
-        return this.customerService.getCustomer(publicKeyHash);
+    public ResponseEntity customer(@PathVariable(value="publicKeyHash") String publicKeyHash) {
+        Customer customer = this.customerService.getCustomer(publicKeyHash);
+        return new ResponseEntity(customer, HttpStatus.OK);
     }
 }

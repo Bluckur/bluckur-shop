@@ -1,6 +1,5 @@
-package rest;
+package controller;
 
-import domain.Customer;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,7 @@ import javax.servlet.ServletException;
 import java.util.Date;
 
 @RestController
-public class AuthenticationRest {
+public class AuthenticationController {
 
     @Autowired
     private AuthenticationService authenticationService;
