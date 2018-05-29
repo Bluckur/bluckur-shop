@@ -1,10 +1,6 @@
 package rest;
 
-<<<<<<< HEAD
-import models.Product;
-=======
 import domain.Product;
->>>>>>> develop
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,15 +17,7 @@ public class ProductRest {
     @Autowired
     private ProductService productService;
 
-<<<<<<< HEAD
-    @RequestMapping("product/get/all")
-=======
-    public ProductRest() {
-        this.productService = new ProductServiceImpl();
-    }
-
     @RequestMapping("/product/get/all")
->>>>>>> develop
     public List<Product> getAllProducts() {
         return this.productService.getAllProducts();
     }

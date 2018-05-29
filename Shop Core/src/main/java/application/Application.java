@@ -1,43 +1,28 @@
 package application;
 
-<<<<<<< HEAD
-=======
 import domain.Customer;
 import domain.Product;
 import domain.ProductLine;
 import domain.Purchase;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import repository.ProductRepository;
-import service.CustomerService;
-import service.ProductService;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
->>>>>>> develop
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-<<<<<<< HEAD
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-
-@SpringBootApplication
-@Configuration
-@EnableAutoConfiguration
-@ComponentScan(basePackages = {"dao", "models", "rest", "service"})
-public class Application {
-=======
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import service.CustomerService;
+import service.ProductService;
 import service.PurchaseService;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@SpringBootApplication(scanBasePackages = { "rest", "service", "repository" })
+@SpringBootApplication(scanBasePackages = {"rest", "service", "repository" })
 @EntityScan("domain")
 @EnableJpaRepositories("repository")
 public class Application implements CommandLineRunner {
@@ -53,8 +38,6 @@ public class Application implements CommandLineRunner {
     @Autowired
     private PurchaseService purchaseService;
 
-
->>>>>>> develop
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }

@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-<<<<<<< HEAD:Shop Core/src/main/java/Models/Product.java
-package models;
-=======
 package domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
->>>>>>> develop:Shop Core/src/main/java/domain/Product.java
 
 /**
  * A type of product which can be ordered in the shop.

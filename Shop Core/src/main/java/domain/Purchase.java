@@ -1,23 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-<<<<<<< HEAD:Shop Core/src/main/java/Models/Purchase.java
-package models;
-=======
 package domain;
->>>>>>> develop:Shop Core/src/main/java/domain/Purchase.java
-
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.persistence.*;
 import java.util.Date;
-<<<<<<< HEAD:Shop Core/src/main/java/Models/Purchase.java
-import java.util.Map;
-=======
 import java.util.List;
->>>>>>> develop:Shop Core/src/main/java/domain/Purchase.java
 
 /**
  * A purchase of a list of products.
