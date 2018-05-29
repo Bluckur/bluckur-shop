@@ -1,6 +1,6 @@
 package dao;
 
-import Models.Customer;
+import models.Customer;
 
 public class CustomerDAOImpl implements CustomerDAO {
     @Override

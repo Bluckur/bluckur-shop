@@ -1,13 +1,15 @@
 package application;
 
-import Models.Customer;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
-import rest.CustomerRest;
+import org.springframework.context.annotation.Configuration;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"Models", "rest"})
+@Configuration
+@EnableAutoConfiguration
+@ComponentScan(basePackages = {"dao", "models", "rest", "service"})
 public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);

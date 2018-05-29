@@ -1,9 +1,11 @@
 package service;
 
-import Models.Customer;
+import models.Customer;
 import dao.CustomerDAO;
 import dao.CustomerDAOImpl;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CustomerService {
     private CustomerDAO customerDAO;
 

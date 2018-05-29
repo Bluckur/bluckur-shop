@@ -1,6 +1,7 @@
 package rest;
 
-import Models.Purchase;
+import models.Purchase;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,11 +12,9 @@ import java.util.List;
 
 @RestController
 public class PurchaseRest {
-    private PurchaseService purchaseService;
 
-    public PurchaseRest() {
-        this.purchaseService = new PurchaseService();
-    }
+    @Autowired
+    private PurchaseService purchaseService;
 
     @RequestMapping("purchase/get/all")
     public List<Purchase> getAllPurchases() {

@@ -1,6 +1,6 @@
 package dao;
 
-import Models.Customer;
+import models.Customer;
 
 public interface CustomerDAO {
     Customer getCustomer(String publicKeyHash);

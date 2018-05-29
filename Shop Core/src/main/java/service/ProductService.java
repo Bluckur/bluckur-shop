@@ -1,11 +1,13 @@
 package service;
 
-import Models.Product;
+import models.Product;
 import dao.ProductDAO;
 import dao.ProductDAOImpl;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ProductService {
     private ProductDAO productDAO;
 

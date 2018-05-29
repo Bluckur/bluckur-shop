@@ -1,6 +1,6 @@
 package dao;
 
-import Models.Purchase;
+import models.Purchase;
 
 import java.util.List;
 

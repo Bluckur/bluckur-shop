@@ -1,6 +1,7 @@
 package rest;
 
-import Models.Product;
+import models.Product;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,11 +13,8 @@ import java.util.List;
 @RestController
 public class ProductRest {
 
+    @Autowired
     private ProductService productService;
-
-    public ProductRest() {
-        this.productService = new ProductService();
-    }
 
     @RequestMapping("product/get/all")
     public List<Product> getAllProducts() {

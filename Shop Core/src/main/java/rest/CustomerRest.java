@@ -1,17 +1,15 @@
 package rest;
 
-import Models.Customer;
+import models.Customer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import service.CustomerService;
 
 @RestController
 public class CustomerRest {
 
+    @Autowired
     private CustomerService customerService;
-
-    public CustomerRest() {
-        this.customerService = new CustomerService();
-    }
 
     /**
      * Gets the customer with this publicKeyHash.

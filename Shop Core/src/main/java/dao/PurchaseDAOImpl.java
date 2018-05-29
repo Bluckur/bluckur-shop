@@ -1,8 +1,8 @@
 package dao;
 
-import Models.Customer;
-import Models.Product;
-import Models.Purchase;
+import models.Customer;
+import models.Product;
+import models.Purchase;
 
 import java.util.*;
 import java.util.stream.Collectors;

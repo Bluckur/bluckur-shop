@@ -1,15 +1,20 @@
 package service;
 
-import Models.Product;
-import Models.Purchase;
+import models.Product;
+import models.Purchase;
 import dao.PurchaseDAO;
 import dao.PurchaseDAOImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Service
 public class PurchaseService {
+
+    @Autowired
     private ProductService productService;
 
     private PurchaseDAO purchaseDAO;
