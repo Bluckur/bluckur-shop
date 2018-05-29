@@ -3,12 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+<<<<<<< HEAD:Shop Core/src/main/java/Models/Customer.java
 package models;
+=======
+package domain;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+>>>>>>> develop:Shop Core/src/main/java/domain/Customer.java
 
 /**
  * A customer of the shop.
  */
+@Entity
 public class Customer {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
     /**
      * A hash of the public key is stored here to be able to identify the user.
      */
@@ -19,6 +34,10 @@ public class Customer {
      * Can be empty.
      */
     private String details;
+
+    private Long balance;
+
+    public Customer() { }
 
     /**
      * Create a new user.
@@ -37,6 +56,7 @@ public class Customer {
 
         this.publicKeyHash = publicKeyHash;
         this.details = details;
+        this.balance = 0l;
     }
 
     /**
@@ -53,5 +73,21 @@ public class Customer {
      */
     public String getDetails() {
         return this.details;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Long balance) {
+        this.balance = balance;
     }
 }

@@ -3,15 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+<<<<<<< HEAD:Shop Core/src/main/java/Models/Product.java
 package models;
+=======
+package domain;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+>>>>>>> develop:Shop Core/src/main/java/domain/Product.java
 
 /**
  * A type of product which can be ordered in the shop.
  */
+@Entity
 public class Product {
     /**
      * The id of the product.
      */
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     /**
@@ -39,22 +51,17 @@ public class Product {
      */
     private int quantity;
 
+    protected Product() {}
+
     /**
      * Create a new Product.
-     * @param id {@link #id}
      * @param price {@link #price}
      * @param imagePath {@link #imagePath}
      * @param name {@link #name}
      * @param description {@link #description}
      * @param quantity {@link #quantity}
      */
-    public Product(int id, int price, String imagePath, String name, String description, int quantity) {
-        if (id < 0) {
-            throw new IllegalArgumentException("id cannot be a negative value.");
-        }
-
-        this.id = id;
-
+    public Product(int price, String imagePath, String name, String description, int quantity) {
         this.setPrice(price);
         this.setImagePath(imagePath);
         this.setName(name);

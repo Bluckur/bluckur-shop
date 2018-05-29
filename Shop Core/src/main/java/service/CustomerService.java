@@ -1,5 +1,6 @@
 package service;
 
+<<<<<<< HEAD
 import models.Customer;
 import dao.CustomerDAO;
 import dao.CustomerDAOImpl;
@@ -19,4 +20,23 @@ public class CustomerService {
         }
         return this.customerDAO.getCustomer(publicKeyHash);
     }
+=======
+import domain.Customer;
+
+import java.util.List;
+
+public interface CustomerService {
+
+    public Customer getCustomer(String publicKeyHash);
+
+    public Customer getCustomer(Long id);
+
+    public Customer addCustomer(Customer customer);
+
+    public Customer updateCustomer(Customer customer);
+
+    public List<Customer> getAllCustomers();
+
+
+>>>>>>> develop
 }
