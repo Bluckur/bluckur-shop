@@ -5,9 +5,12 @@
  */
 package Models;
 
+import javax.persistence.Entity;
+
 /**
  * A customer of the shop.
  */
+@Entity
 public class Customer {
     /**
      * A hash of the public key is stored here to be able to identify the user.

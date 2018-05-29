@@ -5,7 +5,7 @@ import Models.Product;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductDAOImpl implements ProductDAO{
+public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public List<Product> getAllProducts() {

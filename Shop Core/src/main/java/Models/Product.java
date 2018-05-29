@@ -5,13 +5,21 @@
  */
 package Models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  * A type of product which can be ordered in the shop.
  */
+@Entity
 public class Product {
     /**
      * The id of the product.
      */
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     /**
@@ -38,6 +46,8 @@ public class Product {
      * The quantity of this product still in stock.
      */
     private int quantity;
+
+    protected Product() {}
 
     /**
      * Create a new Product.
