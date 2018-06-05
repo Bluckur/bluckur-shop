@@ -49,7 +49,7 @@ export class ProductService {
       .catch((error: any) => this.handleError(error));
   }
 
-  private handleError(error: Response) {
+  private handleError(error: Response) {  
     return Observable.throw(error.statusText);
   }
 

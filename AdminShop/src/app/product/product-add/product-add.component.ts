@@ -9,7 +9,14 @@ import { PRODUCTS } from '../mockproducts';
 })
 export class ProductAddComponent implements OnInit {
   product: Product = {id : null, name: "", description: "", image: "", price: null, quantity: null};
+  fileToUpload: File = null;
+
   constructor() { }
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
+    this.product.image = files.item(0).name.toString();
+    console.log(files.item(0).name);
+}
 
   ngOnInit() {
   }

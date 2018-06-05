@@ -21,6 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {DataSource} from '@angular/cdk/table';
 import { CdkTableModule} from '@angular/cdk/table';
+import { AuthenticationService } from './api/authentication.service';
+import { AuthGuard } from './api/auth.guard';
 
 
 
@@ -44,7 +46,7 @@ import { CdkTableModule} from '@angular/cdk/table';
     MaterialModule,
   ],
   entryComponents: [ProductsComponent, ProductDetailComponent],
-  providers: [ProductService, PurchaseService, CustomerService],
+  providers: [AuthGuard, ProductService, PurchaseService, CustomerService, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

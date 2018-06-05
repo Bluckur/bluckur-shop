@@ -22,10 +22,6 @@ export class ProductsComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  animal: string;
-  name: string;
-
-
   constructor(private router: Router, private productService: ProductService,public dialog: MatDialog) { }
 
   ngOnInit() {
@@ -48,12 +44,6 @@ export class ProductsComponent implements OnInit {
         products => (this.products = products),
         error => (this.error = error)
       )
-  }
-
-  onSelect(product: Product): void {
-    console.log("product:");
-
-    console.log(product);
   }
 
   delete(product: Product): void{
