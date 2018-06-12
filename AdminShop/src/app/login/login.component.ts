@@ -11,7 +11,7 @@ export class LoginComponent implements OnInit {
 
   username: string;
   password: string;
-  error: "";
+  error: string = "";
   loading = false;
 
   constructor(private authenticationService: AuthenticationService, private router: Router) { }
@@ -20,12 +20,12 @@ export class LoginComponent implements OnInit {
     this.authenticationService.logout();
   }
 
-  login(){
-    console.log("username:" +  this.username + "  /  password:"+this.password)
+  login() {
+    //console.log("username:" +  this.username + "  /  password:"+this.password)
     // this.authenticationService.login(this.username, this.password).subscribe(
     //   data => {
     //     // go page
-    //     this.router.navigate["/login"];
+    //     this.router.navigate["/products"];
     //   },
     //   error =>{
     //     // show error
@@ -33,5 +33,14 @@ export class LoginComponent implements OnInit {
     //     this.loading = false;
     //   }
     // );
+    if (this.username == null || this.password == null) {
+      console.log("empty");
+      this.error = "Please fill in username and password";
+    } else {
+      localStorage.setItem('currentUserToken', this.username);
+      this.router.navigate(['products']);
+    }
+
+
   }
 }

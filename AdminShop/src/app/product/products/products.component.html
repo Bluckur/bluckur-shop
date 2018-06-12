@@ -24,35 +24,35 @@
         <!-- Position Column -->
         <ng-container matColumnDef="id">
           <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-          <mat-cell *matCellDef="let product"> {{product.id}} </mat-cell>
+          <mat-cell *matCellDef="let product"> {{product?.id}} </mat-cell>
         </ng-container>
 
         <!-- Name Column -->
         <ng-container matColumnDef="name">
           <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-          <mat-cell *matCellDef="let product"> {{product.name}} </mat-cell>
+          <mat-cell *matCellDef="let product"> {{product?.name}} </mat-cell>
         </ng-container>
 
         <!-- Weight Column -->
         <ng-container matColumnDef="description">
           <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
-          <mat-cell *matCellDef="let product"> {{product.description}} </mat-cell>
+          <mat-cell *matCellDef="let product"> {{product?.description}} </mat-cell>
         </ng-container>
 
         <!-- Symbol Column -->
         <ng-container matColumnDef="image">
           <mat-header-cell *matHeaderCellDef> Image </mat-header-cell>
-          <mat-cell *matCellDef="let product"> {{product.image}} </mat-cell>
+          <mat-cell *matCellDef="let product"> {{product?.imagePath}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="price">
           <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
-          <mat-cell *matCellDef="let product"> {{product.price}} </mat-cell>
+          <mat-cell *matCellDef="let product"> {{product?.price}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="quantity">
           <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
-          <mat-cell *matCellDef="let product"> {{product.quantity}} </mat-cell>
+          <mat-cell *matCellDef="let product"> {{product?.quantity}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="edit">
@@ -80,16 +80,3 @@
     </div>
   </mat-grid-tile>
 </mat-grid-list>
-<!-- <ol>
-  <li>
-    <mat-form-field>
-      <input matInput [(ngModel)]="name" placeholder="What's your name?">
-    </mat-form-field>
-  </li>
-  <li>
-    <button mat-raised-button (click)="openDialog()">Pick one</button>
-  </li>
-  <li *ngIf="animal">
-    You chose: <i>{{animal}}</i>
-  </li>
-</ol> -->

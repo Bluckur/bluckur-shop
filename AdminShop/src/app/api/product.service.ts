@@ -21,13 +21,13 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   getProducts(): Observable<any[]> {
-    return this.http.get(this.productsUrl, this.httpOptions)
+    return this.http.get(this.productsUrl + "get/all", this.httpOptions)
       .map((res: Response) => res)
       .catch((error: any) => this.handleError(error));
   }
 
   getProduct(id: number): Observable<any> {
-    return this.http.get(this.productsUrl + id, this.httpOptions)
+    return this.http.get(this.productsUrl + "get/"+ id, this.httpOptions)
       .map((res: Response) => res)
       .catch((error: any) => this.handleError(error));
   }
