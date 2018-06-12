@@ -4,10 +4,7 @@ import domain.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import service.ProductService;
 
 import java.util.List;
@@ -25,19 +22,19 @@ public class ProductController {
     }
 
     @RequestMapping("/product/get/{id}")
-    public ResponseEntity getProduct(@PathVariable("id") Long id) {
-        Product getProduct = this.productService.getProduct(id);
+    public ResponseEntity getProduct(@PathVariable("id") String id) {
+        Product getProduct = this.productService.getProduct(Long.parseLong(id));
         return new ResponseEntity(getProduct, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/product/add", method = RequestMethod.POST)
-    public ResponseEntity addProduct(Product product) {
+    public ResponseEntity addProduct(@RequestBody Product product) {
         Product addProduct = this.productService.addProduct(product);
         return new ResponseEntity(addProduct, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/product/update", method = RequestMethod.POST)
-    public ResponseEntity updateProduct(Product product) {
+    public ResponseEntity updateProduct(@RequestBody Product product) {
         Product updateProduct = this.productService.updateProduct(product);
         return new ResponseEntity(updateProduct, HttpStatus.OK);
     }
