@@ -22,7 +22,7 @@ import service.PurchaseService;
 import java.util.ArrayList;
 import java.util.List;
 
-@SpringBootApplication(scanBasePackages = {"controller", "service", "repository" })
+@SpringBootApplication(scanBasePackages = {"controller", "service", "security", "repository" })
 @EntityScan("domain")
 @EnableJpaRepositories("repository")
 public class Application implements CommandLineRunner {
@@ -46,7 +46,7 @@ public class Application implements CommandLineRunner {
     public FilterRegistrationBean jwtFilter() {
         final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
         registrationBean.setFilter(new JwtFilter());
-        registrationBean.addUrlPatterns("/product/*");
+        registrationBean.addUrlPatterns("/customer/*", "/product/*", "/purchase/*");
 
         return registrationBean;
     }

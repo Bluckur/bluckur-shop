@@ -1,5 +1,6 @@
 package security;
 
+import io.jsonwebtoken.impl.crypto.MacProvider;
 import org.springframework.web.filter.GenericFilterBean;
 
 import javax.servlet.FilterChain;
@@ -9,12 +10,15 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.security.Key;
 import java.security.SignatureException;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 
 public class JwtFilter extends GenericFilterBean {
+
+    public static Key secret = MacProvider.generateKey();
 
     public void doFilter(final ServletRequest req, final ServletResponse res, final FilterChain chain)
             throws IOException, ServletException {
@@ -34,8 +38,7 @@ public class JwtFilter extends GenericFilterBean {
             }
 
             final String token = authHeader.substring(7);
-
-            final Claims claims = Jwts.parser().setSigningKey("secretkey").parseClaimsJws(token).getBody();
+            final Claims claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
             request.setAttribute("claims", claims);
 
             chain.doFilter(req, res);
