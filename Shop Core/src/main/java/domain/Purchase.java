@@ -14,7 +14,7 @@ public class Purchase {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
 
     /**
      * The total amount of the purchase.
@@ -24,7 +24,7 @@ public class Purchase {
     /**
      * The customer who did of the purchase.
      */
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Customer customer;
 
     /**
@@ -43,7 +43,7 @@ public class Purchase {
     /**
      * A map of the ordered products and the amount of products ordered.
      */
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<ProductLine> products;
 
     /**
@@ -71,8 +71,12 @@ public class Purchase {
      * Get the id of the purchase.
      * @return {@link #id}
      */
-    public int getId() {
+    public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     /**

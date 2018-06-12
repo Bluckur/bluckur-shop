@@ -30,7 +30,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 
     @Override
     public Purchase getPurchase(Long id) {
-        return repository.getOne(id);
+        return repository.findOne(id);
     }
 
     @Override

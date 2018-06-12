@@ -1,0 +1,79 @@
+<mat-grid-list cols="1" rowHeight="50px">
+    <mat-grid-tile>
+      <mat-button-toggle-group #group="matButtonToggleGroup" value="purchase">
+        <mat-button-toggle [routerLink]="['/products']" value="product">
+          Product
+        </mat-button-toggle>
+        <mat-button-toggle [routerLink]="['/purchases']" value="purchase">
+          Purchase
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <mat-grid-list cols="1" rowHeight="1000px">
+      <mat-grid-tile>
+        <div class="example-container mat-elevation-z8">
+          <div class="example-header">
+            <mat-form-field>
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+            </mat-form-field>
+          </div>
+    
+          <mat-table #table [dataSource]="dataSource">
+    
+            <!-- ID Column -->
+            <ng-container matColumnDef="id">
+              <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+              <mat-cell *matCellDef="let purchase"> {{purchase.id}} </mat-cell>
+            </ng-container>
+
+            <!-- Approved Column -->
+            <ng-container matColumnDef="approved">
+              <mat-header-cell *matHeaderCellDef> Approved </mat-header-cell>
+              <mat-cell *matCellDef="let purchase"> {{purchase.approved}} </mat-cell>
+            </ng-container>
+    
+            <!-- Processes Column -->
+            <ng-container matColumnDef="processes">
+              <mat-header-cell *matHeaderCellDef> Processes </mat-header-cell>
+              <mat-cell *matCellDef="let purchase"> {{purchase.processes}} </mat-cell>
+            </ng-container>
+    
+            <!-- Amount Column -->
+            <ng-container matColumnDef="total_amount">
+              <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
+              <mat-cell *matCellDef="let purchase"> {{purchase.total_amount}} </mat-cell>
+            </ng-container>
+    
+            <!-- Timestamp Column -->
+            <ng-container matColumnDef="timestamp">
+              <mat-header-cell *matHeaderCellDef> Time </mat-header-cell>
+              <mat-cell *matCellDef="let purchase"> {{purchase.timestamp}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="edit">
+                <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
+                <mat-cell *matCellDef="let product" (click)="openDialog(product)">
+                  <mat-icon mat-list-icon>edit</mat-icon>
+                </mat-cell>
+              </ng-container>
+      
+              <ng-container matColumnDef="delete">
+                <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+                <mat-cell *matCellDef="let product" (click)="delete(product)">
+                  <mat-icon mat-list-icon>delete</mat-icon>
+                </mat-cell>
+              </ng-container>
+       
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+    
+    
+          <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+          </mat-paginator>
+    
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>

@@ -1,26 +1,37 @@
 package controller;
 
 import domain.Customer;
+import domain.ProductLine;
 import domain.Purchase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import service.CustomerService;
 import service.PurchaseService;
 
 import javax.websocket.server.PathParam;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class PurchaseController {
+
     @Autowired
     private PurchaseService purchaseService;
 
     @Autowired
     private CustomerService customerService;
+
+    @RequestMapping("purchase/add")
+    public ResponseEntity addPurchase(@RequestBody Purchase purchase) {
+        Purchase addPurchase = purchaseService.addPurchase(purchase);
+        return new ResponseEntity(addPurchase, HttpStatus.OK);
+    }
 
     @RequestMapping("purchase/get/all")
     public ResponseEntity getAllPurchases() {
@@ -29,8 +40,8 @@ public class PurchaseController {
     }
 
     @RequestMapping("purchase/get/{id}")
-    public ResponseEntity getPurchase(@PathVariable("id") Long id) {
-        Purchase purchase = this.purchaseService.getPurchase(id);
+    public ResponseEntity getPurchase(@PathVariable("id") String id) {
+        Purchase purchase = this.purchaseService.getPurchase(Long.parseLong(id));
         return new ResponseEntity(purchase, HttpStatus.OK);
     }
 
@@ -51,6 +62,5 @@ public class PurchaseController {
     public ResponseEntity processPurchase(@PathVariable("id") Long id) {
         Purchase purchase = this.purchaseService.getPurchase(id);
         return new ResponseEntity(purchase, HttpStatus.OK);
-
     }
 }
