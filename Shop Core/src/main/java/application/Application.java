@@ -44,32 +44,32 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... strings) {
-        log.info("START TEST");
-
-        Product productMug = productService.addProduct(new Product(1, "image path 1", "mug", "to drink from", 100));
-        Product productShirt = productService.addProduct(new Product(2, "image path 2", "shirt", "to wear", 20));
-        Product productCar = productService.addProduct(new Product(3, "image path 3", "car", "to drive", 1));
-
-        ArrayList<ProductLine> products = new ArrayList<>();
-
-        int i = 1;
-        for(Product product : productService.getAllProducts()) {
-            products.add(new ProductLine(product, i));
-            log.info(product.toString());
-            i++;
-        }
-
-
-        Customer customerStan = customerService.addCustomer(new Customer("123", "Stan"));
-        Customer customerPim = customerService.addCustomer(new Customer("456", "Pim"));
-
-        Purchase purchase = purchaseService.addPurchase(new Purchase(customerStan, products));
-
-        List<Purchase> purchasesByStan = purchaseService.getPurchasesBy(customerStan);
-
-        Customer customer = customerService.getCustomer("123");
-        log.info(customer.getDetails());
-
-        log.info("END TEST");
+//        log.info("START TEST");
+//
+//        Product productMug = productService.addProduct(new Product(1, "image path 1", "mug", "to drink from", 100));
+//        Product productShirt = productService.addProduct(new Product(2, "image path 2", "shirt", "to wear", 20));
+//        Product productCar = productService.addProduct(new Product(3, "image path 3", "car", "to drive", 1));
+//
+//        ArrayList<ProductLine> products = new ArrayList<>();
+//
+//        int i = 1;
+//        for(Product product : productService.getAllProducts()) {
+//            products.add(new ProductLine(product, i));
+//            log.info(product.toString());
+//            i++;
+//        }
+//
+//
+//        Customer customerStan = customerService.addCustomer(new Customer("123", "Stan"));
+//        Customer customerPim = customerService.addCustomer(new Customer("456", "Pim"));
+//
+//        Purchase purchase = purchaseService.addPurchase(new Purchase(customerStan, products));
+//
+//        List<Purchase> purchasesByStan = purchaseService.getPurchasesBy(customerStan);
+//
+//        Customer customer = customerService.getCustomer("123");
+//        log.info(customer.getDetails());
+//
+//        log.info("END TEST");
     }
 }
