@@ -21,15 +21,18 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    //console.log("username:" +  this.username + "  /  password:"+this.password)
+    // console.log("username:" + this.username + "  /  password:" + this.password)
     // this.authenticationService.login(this.username, this.password).subscribe(
     //   data => {
     //     // go page
-    //     this.router.navigate["/products"];
+    //     console.log(data);
+    //     console.log(localStorage.getItem("token"));
+    //     this.router.navigate(['products']);
     //   },
-    //   error =>{
+    //   error => {
     //     // show error
-    //     this.error=error;
+    //     console.log(error);
+    //     this.error = error;
     //     this.loading = false;
     //   }
     // );
@@ -37,7 +40,7 @@ export class LoginComponent implements OnInit {
       console.log("empty");
       this.error = "Please fill in username and password";
     } else {
-      localStorage.setItem('currentUserToken', this.username);
+      localStorage.setItem('token', "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdGFuIiwicm9sZXMiOiJBRE1JTiIsImlhdCI6MTUyODc5NzE4Nn0.YvFLqXYC_Pox2DNuIs9xjmauwT8Xdkf-N_L4SxxcDHU");
       this.router.navigate(['products']);
     }
 

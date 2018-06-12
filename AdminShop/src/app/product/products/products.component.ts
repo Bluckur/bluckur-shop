@@ -18,22 +18,23 @@ export class ProductsComponent implements OnInit {
   error: any;
 
   displayedColumns = ['id', 'name', 'description', 'imagePath', 'price', 'quantity', 'edit', 'delete'];
-  dataSource : any;
+  dataSource: any;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private router: Router, private productService: ProductService,public dialog: MatDialog) { }
+  constructor(private router: Router, private productService: ProductService, public dialog: MatDialog) { }
 
   ngOnInit() {
     //this.mockProduct();
-    this.initTableDatasource();
+    this.getProducts();
+    //this.initTableDatasource();
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+   // this.dataSource.paginator = this.paginator;
   }
 
-  initTableDatasource(){
+  initTableDatasource() {
     this.dataSource = new MatTableDataSource(this.products);
   }
 
@@ -41,15 +42,21 @@ export class ProductsComponent implements OnInit {
     this.productService
       .getProducts()
       .subscribe(
-        products => (this.products = products),
+        products => {
+          (this.products = products),
+          console.log(products);
+          this.initTableDatasource();
+          this.dataSource.paginator = this.paginator;
+        }
+        ,
         error => (this.error = error)
       )
   }
 
-  delete(product: Product): void{
+  delete(product: Product): void {
     console.log(product);
-    const index: number= this.products.indexOf(product);
-    if(index != -1){
+    const index: number = this.products.indexOf(product);
+    if (index != -1) {
       this.products.splice(index, 1);
     }
     console.log(this.products);

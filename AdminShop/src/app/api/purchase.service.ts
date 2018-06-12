@@ -13,21 +13,20 @@ export class PurchaseService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*'
-    })
+      'Access-Control-Allow-Origin': '*'    })
   };
 
   constructor(private http: HttpClient) { }
 
   getPurchases() {
-    return this.http.get(this.purchaseApiUrl, this.httpOptions)
+    return this.http.get(this.purchaseApiUrl + "get/all", this.httpOptions)
       .map((res: Response) => res)
       .catch((error: any) => this.handleError(error));
 
   }
 
   getPurchase(purchaseId: number) {
-    return this.http.get(this.purchaseApiUrl + purchaseId, this.httpOptions)
+    return this.http.get(this.purchaseApiUrl + "get/" + purchaseId, this.httpOptions)
       .map((res: Response) => res)
       .catch((error: any) => this.handleError(error));
   }

@@ -14,13 +14,13 @@ export class ProductService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*'
-    })
+      'Access-Control-Allow-Origin': '*'    })
   };
 
   constructor(private http: HttpClient) { }
 
   getProducts(): Observable<any[]> {
+    console.log(this.productsUrl);
     return this.http.get(this.productsUrl + "get/all", this.httpOptions)
       .map((res: Response) => res)
       .catch((error: any) => this.handleError(error));
@@ -33,6 +33,8 @@ export class ProductService {
   }
 
   addProduct(product: Product) {
+    
+    console.log(product);
     return this.http
       .post<Product>(this.productsUrl + "add", product, this.httpOptions)
       .catch((error: any) => this.handleError(error));

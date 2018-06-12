@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../models/product';
-import { PRODUCTS } from '../mockproducts';
+import { ProductService } from '../../api/product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-add',
@@ -8,25 +9,30 @@ import { PRODUCTS } from '../mockproducts';
   styleUrls: ['./product-add.component.css']
 })
 export class ProductAddComponent implements OnInit {
-  product: Product = {id : null, name: "", description: "", image: "", price: null, quantity: null};
+  product: Product = { id: null, name: "", description: "", imagePath: "", price: null, quantity: null };
   fileToUpload: File = null;
 
-  constructor() { }
+  constructor(private productsService: ProductService, private router: Router) { }
   handleFileInput(files: FileList) {
     this.fileToUpload = files.item(0);
-    this.product.image = files.item(0).name.toString();
+    this.product.imagePath = files.item(0).name.toString();
     console.log(files.item(0).name);
-}
+  }
 
   ngOnInit() {
   }
 
-  addProduct(){
-    //TODO: RESTcall add product
-    //PRODUCTS.push(product);
-    console.log("addProduct");
-
-    console.log(this.product);
+  addProduct() {
+    this.productsService.addProduct(this.product).subscribe(
+      data => {
+        console.log("added product:");
+        console.log(data);
+        this.router.navigate(['products']);
+      },
+      error => {
+        console.log("error");
+        console.log(error);
+      });
   }
 
 }

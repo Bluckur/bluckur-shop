@@ -8,5 +8,5 @@ export const environment = {
   productApiURL: "http://localhost:8080/product/",
   purchaseApiURL: "http://localhost:8080/purchase/",
   customerApiURL: "http://localhost:8080/customer/",
-  autheticationApiUrl: "http://localhost:8080/customer/authentication/login/"
+  autheticationApiUrl: "http://127.0.0.1:8080/authentication/login"
 };
