@@ -48,7 +48,7 @@ public class PurchaseController {
     }
 
     @RequestMapping("purchase/process/{id}")
-    public ResponseEntity processPurchase(@PathParam("id") Long id) {
+    public ResponseEntity processPurchase(@PathVariable("id") Long id) {
         Purchase purchase = this.purchaseService.getPurchase(id);
         return new ResponseEntity(purchase, HttpStatus.OK);
 

@@ -46,7 +46,7 @@ public class Application implements CommandLineRunner {
     public FilterRegistrationBean jwtFilter() {
         final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
         registrationBean.setFilter(new JwtFilter());
-        registrationBean.addUrlPatterns("/customer/*", "/product/*", "/purchase/*");
+        registrationBean.addUrlPatterns("/customer/*", "/product/add", "/product/update", "/purchase/process/*");
 
         return registrationBean;
     }

@@ -20,7 +20,6 @@ public class ProductController {
     private ProductService productService;
 
     @RequestMapping("/product/get/all")
-    @PreAuthorize("hasRole('USER')")
     public ResponseEntity getAllProducts() {
         List<Product> allProducts = this.productService.getAllProducts();
         return new ResponseEntity(allProducts, HttpStatus.OK);
