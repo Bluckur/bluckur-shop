@@ -4,24 +4,25 @@ import domain.Customer;
 import domain.Product;
 import domain.ProductLine;
 import domain.Purchase;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import service.CustomerService;
-import service.ProductService;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import security.JwtFilter;
+import service.CustomerService;
+import service.ProductService;
 import service.PurchaseService;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@SpringBootApplication(scanBasePackages = {"controller", "service", "repository" })
+@SpringBootApplication(scanBasePackages = {"controller", "service", "security", "repository" })
 @EntityScan("domain")
 @EnableJpaRepositories("repository")
 public class Application implements CommandLineRunner {
@@ -37,9 +38,17 @@ public class Application implements CommandLineRunner {
     @Autowired
     private PurchaseService purchaseService;
 
-
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
+    }
+
+    @Bean
+    public FilterRegistrationBean jwtFilter() {
+        final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+        registrationBean.setFilter(new JwtFilter());
+        registrationBean.addUrlPatterns("/customer/*", "/product/add", "/product/update", "/purchase/process/*");
+
+        return registrationBean;
     }
 
     @Override

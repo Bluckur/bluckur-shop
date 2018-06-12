@@ -1,21 +1,23 @@
 package service;
 
 import domain.Product;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public interface ProductService {
 
-    public List<Product> getAllProducts();
+    List<Product> getAllProducts();
 
-    public Product getProduct(Long id);
+    Product getProduct(Long id);
 
-    public List<Product> getProduct(String name);
+    List<Product> getProduct(String name);
 
-    public void lowerStock(Product product, int quantity);
+    void lowerStock(Product product, int quantity);
 
-    public Product addProduct(Product product);
+    Product addProduct(Product product);
 
-    public Product updateProduct(Product product);
+    Product updateProduct(Product product);
 
 }
